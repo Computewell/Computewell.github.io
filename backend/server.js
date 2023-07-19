@@ -37,5 +37,5 @@ start();
 // MongoDB Atlas
 // NO SQL, Non relational Database
 // Store JSON
-// Dynamic Schema
+// Dynamic mongoose Schema
 //
