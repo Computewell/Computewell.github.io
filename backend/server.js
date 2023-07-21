@@ -1,4 +1,4 @@
-import connectDB  from "./db/connect.js";
+import connectDB from "./db/connect.js";
 import express from "express";
 import dotenv from "dotenv";
 import tasks from "./routes/tasks.js";
@@ -9,7 +9,7 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(express.static("./public"))
+app.use(express.static("./public"));
 
 // Routes
 app.use("/api/v1/tasks", tasks);
@@ -17,15 +17,16 @@ app.use("/api/v1/tasks", tasks);
 const start = async () => {
   try {
     await connectDB(process.env.MONGO_URI);
-    app.listen(port, console.log(`Server running at http://localhost:${port}...`));
-  
+    app.listen(
+      port,
+      console.log(`Server running at http://localhost:${port}...`)
+    );
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 start();
-
 
 // Path: Backend\routes\controllers\tasks.js REST API
 // app.get('/api/v1/tasks/')  - Get all tasks
