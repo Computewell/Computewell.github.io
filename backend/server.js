@@ -9,15 +9,15 @@ const app = express();
 
 // Middleware
 app.use(express.json());
+app.use(express.static("./public"))
 
 // Routes
-app.get("/hello", (req, res) => res.send("Task Manager App"));
 app.use("/api/v1/tasks", tasks);
 
 const start = async () => {
   try {
     await connectDB(process.env.MONGO_URI);
-    app.listen(port, () => console.log(`Server running at http://localhost:${port}...`));
+    app.listen(port, console.log(`Server running at http://localhost:${port}...`));
   
   } catch (error) {
     console.log(error);
