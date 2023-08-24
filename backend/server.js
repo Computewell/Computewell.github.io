@@ -2,9 +2,12 @@ import connectDB from "./db/connect.js";
 import express from "express";
 import dotenv from "dotenv";
 import tasks from "./routes/tasks.js";
+import notFound from "./middleware/not-found.js";
+import errorHandlerMiddleware from "./middleware/error-handler.js";
 
+// Port configuration
 dotenv.config();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 const app = express();
 
 // Middleware
@@ -13,6 +16,8 @@ app.use(express.static("./public"));
 
 // Routes
 app.use("/api/v1/tasks", tasks);
+app.use(notFound);
+app.use(errorHandlerMiddleware);
 
 const start = async () => {
   try {
@@ -27,16 +32,3 @@ const start = async () => {
 };
 
 start();
-
-// Path: Backend\routes\controllers\tasks.js REST API
-// app.get('/api/v1/tasks/')  - Get all tasks
-// app.post('/api/v1/tasks/') - Create a new task
-// app.get('/api/v1/tasks/:id') - Get a single task
-// app.patch('/api/v1/tasks/:id') - Update a task
-// app.delete('/api/v1/tasks/:id') - Delete a task
-
-// MongoDB Atlas
-// NO SQL, Non relational Database
-// Store JSON
-// Dynamic mongoose Schema
-//
